@@ -1,5 +1,20 @@
 {
-  "buildCommand": "pnpm docs:build",
-  "outputDirectory": "src/.vuepress/dist",
-  "framework": "null" 
+  "version": 2,
+  "framework": "vuepress",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/src/.vuepress/dist/$1"
+    }
+  ],
+  "override": {
+    "buildCommand": "pnpm run docs:build",
+    "outputDirectory": "src/.vuepress/dist"
+  }
 }
